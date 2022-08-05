@@ -1,0 +1,333 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://scp/timer.gd" type="Script" id=1]
+[ext_resource path="res://assets/coin.png" type="Texture" id=2]
+[ext_resource path="res://scp/game.gd" type="Script" id=3]
+[ext_resource path="res://scp/Camera.gd" type="Script" id=4]
+[ext_resource path="res://assets/video.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/COOPBL.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://res/MenuShow.res" type="PackedScene" id=7]
+[ext_resource path="res://scp/main.gd" type="Script" id=8]
+[ext_resource path="res://res/ScrollContainer.res" type="PackedScene" id=9]
+[ext_resource path="res://assets/back.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=29]
+size = 64
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 35
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=21]
+default_font = SubResource( 20 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 35
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=26]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../boxs:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 48, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../boxs:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TextureRect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../TextureRect:rect_rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "snaking"
+length = 0.1
+step = 0.013
+tracks/0/type = "value"
+tracks/0/path = NodePath("../boxs:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.039, 0.078, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 48, 0 ), Vector2( 68, 0 ), Vector2( 32, 0 ), Vector2( 48, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../boxs:rect_rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TextureRect:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.039, 0.078, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 20, 0 ), Vector2( -16, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../TextureRect:rect_rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="DynamicFont" id=28]
+size = 32
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=23]
+
+[sub_resource type="DynamicFont" id=25]
+size = 55
+font_data = ExtResource( 6 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 8 )
+
+[node name="Game" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Camera" type="Camera2D" parent="Game"]
+position = Vector2( 0, 360 )
+rotating = true
+current = true
+zoom = Vector2( 1.5, 1.5 )
+smoothing_enabled = true
+script = ExtResource( 4 )
+lose_zoom_value = Vector2( 1, 1 )
+
+[node name="BG" type="ColorRect" parent="Game/Camera"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -994.0
+margin_top = -910.0
+margin_right = 1006.0
+margin_bottom = 1090.0
+color = Color( 0.368627, 0.278431, 0.686275, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MenuShow" parent="Game" instance=ExtResource( 7 )]
+
+[node name="Tween" type="Tween" parent="Game"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="on_game_bar" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="level" type="Label" parent="UI/on_game_bar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -128.0
+margin_right = 128.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 29 )
+text = "1"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="back" type="TextureButton" parent="UI/on_game_bar"]
+margin_right = 77.0
+margin_bottom = 76.0
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 4
+
+[node name="main_ui" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="main_menu" type="Control" parent="UI/main_ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ScrollContainer" parent="UI/main_ui/main_menu" instance=ExtResource( 9 )]
+anchor_top = 1.0
+margin_top = -426.0
+margin_bottom = -4.0
+scroll_vertical_enabled = false
+card_scale = 0.5
+card_current_scale = 0.7
+_main = NodePath("../../../..")
+
+[node name="boxs" type="Label" parent="UI/main_ui/main_menu"]
+margin_left = 48.0
+margin_right = 132.0
+margin_bottom = 48.0
+theme = SubResource( 21 )
+text = "999"
+
+[node name="TextureRect" type="TextureRect" parent="UI/main_ui/main_menu"]
+margin_right = 48.0
+margin_bottom = 48.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="timer" type="Label" parent="UI/main_ui/main_menu"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -179.0
+margin_right = -8.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 24 )
+text = "01:00"
+align = 2
+script = ExtResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="UI/main_ui/main_menu"]
+root_node = NodePath("../TextureRect")
+anims/RESET = SubResource( 26 )
+anims/snaking = SubResource( 27 )
+
+[node name="watch_ads" type="TextureButton" parent="UI/main_ui"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -104.0
+margin_top = 75.0
+margin_right = -24.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 5 )
+expand = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/main_ui/watch_ads"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 28 )
+text = "+1"
+
+[node name="win" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="ColorRect" parent="UI/win"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.882353 )
+
+[node name="Label" type="Label" parent="UI/win"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -118.5
+margin_top = -32.0
+margin_right = 118.5
+margin_bottom = 32.0
+theme = SubResource( 23 )
+custom_fonts/font = SubResource( 25 )
+text = "You Win"
+align = 1
+valign = 1
+
+[node name="lose" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="ColorRect" parent="UI/lose"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.882353 )
+
+[node name="Label" type="Label" parent="UI/lose"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -122.5
+margin_top = -32.0
+margin_right = 122.5
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 25 )
+text = "You Lose
+-1"
+align = 1
+valign = 1
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="bg" type="ColorRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.368627, 0.278431, 0.686275, 1 )
+
+[node name="Bg Tween" type="Tween" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="UI/on_game_bar/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="UI/main_ui/watch_ads" to="." method="_on_watch_ads_pressed"]
